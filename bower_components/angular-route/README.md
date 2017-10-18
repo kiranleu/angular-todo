@@ -1,68 +1,67 @@
-# packaged angular-route
+# jQuery
 
-This repo is for distribution on `npm` and `bower`. The source for this module is in the
-[main AngularJS repo](https://github.com/angular/angular.js/tree/master/src/ngRoute).
-Please file issues and pull requests against that repo.
+> jQuery is a fast, small, and feature-rich JavaScript library.
 
-## Install
+For information on how to get started and how to use jQuery, please see [jQuery's documentation](http://api.jquery.com/).
+For source files and issues, please visit the [jQuery repo](https://github.com/jquery/jquery).
 
-You can install this package either with `npm` or with `bower`.
+If upgrading, please see the [blog post for 3.2.1](https://blog.jquery.com/2017/03/20/jquery-3-2-1-now-available/). This includes notable differences from the previous version and a more readable changelog.
 
-### npm
+## Including jQuery
 
-```shell
-npm install angular-route
-```
+Below are some of the most common ways to include jQuery.
 
-Then add `ngRoute` as a dependency for your app:
+### Browser
 
-```javascript
-angular.module('myApp', [require('angular-route')]);
-```
-
-### bower
-
-```shell
-bower install angular-route
-```
-
-Add a `<script>` to your `index.html`:
+#### Script tag
 
 ```html
-<script src="/bower_components/angular-route/angular-route.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 ```
 
-Then add `ngRoute` as a dependency for your app:
+#### Babel
 
-```javascript
-angular.module('myApp', ['ngRoute']);
+[Babel](http://babeljs.io/) is a next generation JavaScript compiler. One of the features is the ability to use ES6/ES2015 modules now, even though browsers do not yet support this feature natively.
+
+```js
+import $ from "jquery";
 ```
 
-## Documentation
+#### Browserify/Webpack
 
-Documentation is available on the
-[AngularJS docs site](http://docs.angularjs.org/api/ngRoute).
+There are several ways to use [Browserify](http://browserify.org/) and [Webpack](https://webpack.github.io/). For more information on using these tools, please refer to the corresponding project's documention. In the script, including jQuery will usually look like this...
 
-## License
+```js
+var $ = require("jquery");
+```
 
-The MIT License
+#### AMD (Asynchronous Module Definition)
 
-Copyright (c) 2010-2015 Google, Inc. http://angularjs.org
+AMD is a module format built for the browser. For more information, we recommend [require.js' documentation](http://requirejs.org/docs/whyamd.html).
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+```js
+define(["jquery"], function($) {
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+});
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
+### Node
+
+To include jQuery in [Node](nodejs.org), first install with npm.
+
+```sh
+npm install jquery
+```
+
+For jQuery to work in Node, a window with a document is required. Since no such window exists natively in Node, one can be mocked by tools such as [jsdom](https://github.com/tmpvar/jsdom). This can be useful for testing purposes.
+
+```js
+require("jsdom").env("", function(err, window) {
+	if (err) {
+		console.error(err);
+		return;
+	}
+
+	var $ = require("jquery")(window);
+});
+```
